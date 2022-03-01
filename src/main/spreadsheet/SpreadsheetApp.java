@@ -5,6 +5,11 @@ package main.spreadsheet;/*
  * @author Donald Chinn
  */
 
+/**
+ * TCSS 342
+ * Authors: Dylan, Andrew, Alex
+ */
+
 public class SpreadsheetApp {
     
     /**
