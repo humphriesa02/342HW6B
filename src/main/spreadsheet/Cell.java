@@ -3,6 +3,7 @@ package main.spreadsheet;
 public class Cell {
     private String formula;
     private int value;
+    private String postOrderFormula;
     // the expression tree below represents the formula
     private ExpressionTree expressionTree;
 
