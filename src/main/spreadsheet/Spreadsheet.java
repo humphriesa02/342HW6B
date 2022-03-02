@@ -10,4 +10,12 @@ public class Spreadsheet {
     public Spreadsheet(int rowCols){
 
     }
+
+    public static int getColumns() {
+        return columns;
+    }
+
+    public static int getRows() {
+        return rows;
+    }
 }
