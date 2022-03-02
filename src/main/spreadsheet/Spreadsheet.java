@@ -11,11 +11,11 @@ public class Spreadsheet {
 
     }
 
-    public static int getColumns() {
+    public static int getNumColumns() {
         return columns;
     }
 
-    public static int getRows() {
+    public static int getNumRows() {
         return rows;
     }
 }
