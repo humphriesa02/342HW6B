@@ -1,8 +1,9 @@
 package main.spreadsheet;
 
 public class Spreadsheet {
-    private static final int rows = 4;
-    private static final int columns = 4;
+    private static int rows = 4;
+    private static int columns = 4;
+    private static final Cell[][] cells = new Cell[rows][columns];
 
     public Spreadsheet(){
 
