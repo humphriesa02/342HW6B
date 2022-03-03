@@ -8,4 +8,8 @@ public class OperatorToken extends Token {
     public static final char LeftParen  = '(';
 
     private char operatorToken;
+
+    public OperatorToken(char operatorToken) {
+        this.operatorToken = operatorToken;
+    }
 }
