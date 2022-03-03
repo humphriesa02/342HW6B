@@ -11,4 +11,8 @@ public class LiteralToken extends Token {
     public LiteralToken(String value){
         setTokenString(value);
     }
+    //Convert integer to string for operations
+    public String toString() {
+        return Integer.toString(value);
+    }
 }
