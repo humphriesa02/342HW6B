@@ -14,11 +14,23 @@ public class Spreadsheet {
 
     }
 
-    public static int getNumColumns() {
+    public int getNumColumns() {
         return columns;
     }
 
-    public static int getNumRows() {
+    public int getNumRows() {
         return rows;
+    }
+
+    public void printValues(){
+        /**
+         * for each cell in cells ; print their value
+         */
+    }
+
+    public void printCellFormula(CellToken cellToken){
+        /**
+         * Given cellToken, print the formula it points to
+         */
     }
 }

@@ -8,6 +8,7 @@ package main.spreadsheet;/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 /**
  * TCSS 342
@@ -117,7 +118,7 @@ public class SpreadsheetApp {
     public static void main(String[] args) {
         Spreadsheet theSpreadsheet = new Spreadsheet(8);
 
-        bool done = false;
+        boolean done = false;
         String command = "";
     
         System.out.println(">>> Welcome to the TCSS 342 Spreadsheet <<<");
