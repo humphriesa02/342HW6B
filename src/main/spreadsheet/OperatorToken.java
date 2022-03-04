@@ -27,6 +27,37 @@ public class OperatorToken extends Token {
                 (ch == LeftParen) );
     }
 
+    /*
+     * Return the priority of this OperatorToken.
+     *
+     * priorities:
+     *   +, - : 0
+     *   *, / : 1
+     *   (    : 2
+     *
+     * @return  the priority of operatorToken
+     */
+    int priority () {
+        switch (this.operatorToken) {
+            case Plus:
+                return 0;
+            case Minus:
+                return 0;
+            case Mult:
+                return 1;
+            case Div:
+                return 1;
+            case LeftParen:
+                return 2;
+
+            default:
+                // This case should NEVER happen
+                System.out.println("Error in priority.");
+                System.exit(0);
+                break;
+        }
+    }
+
     /**
      * Given an operator, return its priority.
      *
