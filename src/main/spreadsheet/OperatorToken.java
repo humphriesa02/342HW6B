@@ -12,4 +12,55 @@ public class OperatorToken extends Token {
     public OperatorToken(char operatorToken) {
         this.operatorToken = operatorToken;
     }
+
+    /**
+     * Return true if the char ch is an operator of a formula.
+     * Current operators are: +, -, *, /, (.
+     * @param ch  a char
+     * @return  whether ch is an operator
+     */
+    boolean isOperator (char ch) {
+        return ((ch == Plus) ||
+                (ch == Minus) ||
+                (ch == Mult) ||
+                (ch == Div) ||
+                (ch == LeftParen) );
+    }
+
+    /**
+     * Given an operator, return its priority.
+     *
+     * priorities:
+     *   +, - : 0
+     *   *, / : 1
+     *   (    : 2
+     *
+     * @param ch  a char
+     * @return  the priority of the operator
+     */
+    int operatorPriority (char ch) {
+        if (!isOperator(ch)) {
+            // This case should NEVER happen
+            System.out.println("Error in operatorPriority.");
+            System.exit(0);
+        }
+        switch (ch) {
+            case Plus:
+                return 0;
+            case Minus:
+                return 0;
+            case Mult:
+                return 1;
+            case Div:
+                return 1;
+            case LeftParen:
+                return 2;
+
+            default:
+                // This case should NEVER happen
+                System.out.println("Error in operatorPriority.");
+                System.exit(0);
+                break;
+        }
+    }
 }

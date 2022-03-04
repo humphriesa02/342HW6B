@@ -8,9 +8,6 @@ public class LiteralToken extends Token {
         this.value = value;
     }
     // When we get a reference to a cell
-    public LiteralToken(String value){
-        setTokenString(value);
-    }
 
     /**
      * Setter for value.
