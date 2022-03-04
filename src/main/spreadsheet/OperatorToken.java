@@ -13,13 +13,17 @@ public class OperatorToken extends Token {
         this.operatorToken = operatorToken;
     }
 
+
+    public char getOperatorToken(){
+        return operatorToken;
+    }
     /**
      * Return true if the char ch is an operator of a formula.
      * Current operators are: +, -, *, /, (.
      * @param ch  a char
      * @return  whether ch is an operator
      */
-    boolean isOperator (char ch) {
+    public static boolean isOperator (char ch) {
         return ((ch == Plus) ||
                 (ch == Minus) ||
                 (ch == Mult) ||
@@ -69,7 +73,7 @@ public class OperatorToken extends Token {
      * @param ch  a char
      * @return  the priority of the operator
      */
-    int operatorPriority (char ch) {
+    public static int operatorPriority (char ch) {
         if (!isOperator(ch)) {
             // This case should NEVER happen
             System.out.println("Error in operatorPriority.");

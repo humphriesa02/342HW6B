@@ -55,11 +55,11 @@ public class ExpressionTree {
         Token token;
         if (s.isEmpty())
             return null;
-        token = s.topAndPop(); // need to handle stack underflow
+        token = (Token) s.pop(); // need to handle stack underflow
         if ((token instanceof LiteralToken) ||
                 (token instanceof CellToken) ) {
             // Literals and Cells are leaves in the expression tree
-            returnTree = new ExpressionTreeNode(token, NULL, NULL);
+            returnTree = new ExpressionTreeNode(token, null, null);
             return returnTree;
         } else if (token instanceof OperatorToken) {
             // Continue finding tokens that will form the
