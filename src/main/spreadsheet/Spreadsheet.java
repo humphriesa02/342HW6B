@@ -1,57 +1,89 @@
 package main.spreadsheet;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class Spreadsheet {
-    private static int rows = 4;
-    private static int columns = 4;
+    // Final variables for rows and cols, default to them
+    // if we do not specify the size of our spreadsheet in constructor
+    private static final int ROWS = 4;
+    private static final int COLS = 4;
     // container for our cells creating a grid of cells
     // columns wide and rows deep
-    private static final Cell[][] cells = new Cell[rows][columns];
+    private static Cell[][] spreadsheetCells;
+    // Default cell if we are out of bounds on a call
     private final int BadCell = -1;
 
+    // default constructor makes spreadsheet of size ROWS x COLS
     public Spreadsheet(){
-
+        spreadsheetCells = new Cell[ROWS][COLS];
+        // Assigning the elements of the spreadsheet (originally null)
+        // to new cells.
+        for(int i = 0; i < spreadsheetCells.length; i++){
+            for(int j = 0; j < spreadsheetCells[i].length; j++)
+                spreadsheetCells[i][j] = new Cell();
+        }
     }
+
+    // Constructor passing in size in rowCols, makes a
+    // spreadsheet of size rowCols x rowCols
     public Spreadsheet(int rowCols){
-        for(int i = 0; i < cells.length; i++){
-            for(int j = 0; j < cells[i].length; j++)
-            cells[i][j] = new Cell();
+        spreadsheetCells = new Cell[rowCols][rowCols];
+        for(int i = 0; i < spreadsheetCells.length; i++){
+            for(int j = 0; j < spreadsheetCells[i].length; j++)
+            spreadsheetCells[i][j] = new Cell();
         }
 
     }
 
     public int getNumColumns() {
-        return columns;
+        return spreadsheetCells[0].length;
     }
 
     public int getNumRows() {
-        return rows;
+        return spreadsheetCells.length;
     }
 
+    /**
+     * Prints the value of each cell
+     * in the spreadsheetCells array.
+     */
     public void printValues(){
-        /**
-         * for each cell in cells ; print their values
-         *
-         * for (cell : cells)
-         *      cell.evaluate
-         */
+        for(int i = 0; i < spreadsheetCells.length; i++){
+            for (int j = 0; j < spreadsheetCells[i].length; j++){
+                System.out.println(spreadsheetCells[i][j].getValue());
+            }
+        }
 
     }
 
+    /**
+     * Prints all formulas of each cell
+     * if they are not blank
+     */
+    public void printAllFormulas(){
+        for(int i = 0; i < spreadsheetCells.length; i++){
+            for (int j = 0; j < spreadsheetCells[i].length; j++){
+                if(spreadsheetCells[i][j].getFormula() != ""){
+                    System.out.println(spreadsheetCells[i][j].getFormula());
+                }
+            }
+        }
+    }
+
+    /**
+     * Prints the formula of cellToken
+     * by finding it inside spreadsheetCells
+     * @param cellToken
+     */
     public void printCellFormula(CellToken cellToken){
         /**
          * Given cellToken, print the formula it points to
          */
-    }
-
-    public void printAllFormulas(){
-
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].getFormula();
     }
 
     public String printCellToken(CellToken cellToken){
-        return "Null";
+        return cellToken.getRow() + " " + cellToken.getColumn();
     }
 
     /**
@@ -308,7 +340,16 @@ public class Spreadsheet {
         return index;
     }
 
+    /**
+     * Currently finds the cell inside spreadsheetCells
+     * using cellToken getRow() and getColumn(),
+     * then calls the Cell .stackToTree function,
+     * which takes a stack and sets the cell's
+     * expression tree based on the stack
+     * @param cellToken
+     * @param expTreeTokenStack
+     */
     void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack){
-        cells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack);
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack);
     }
 }
