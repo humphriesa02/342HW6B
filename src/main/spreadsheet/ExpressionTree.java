@@ -77,6 +77,8 @@ public class ExpressionTree {
                     new ExpressionTreeNode(token, leftSubtree, rightSubtree);
             return returnTree;
         }
+        return null;
     }
+
 
 }

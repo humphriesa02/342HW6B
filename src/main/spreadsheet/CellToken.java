@@ -26,7 +26,7 @@ public class CellToken extends Token {
      * Setter for row.
      * @param myRow
      */
-    void setRow(int myRow) {
+    public void setRow(int myRow) {
         row = myRow;
     }
 

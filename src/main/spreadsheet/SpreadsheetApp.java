@@ -51,9 +51,9 @@ public class SpreadsheetApp {
     
         System.out.println("Enter the cell: ");
         inputString = readString();
-        getCellToken(inputString, 0, cellToken);
+        theSpreadsheet.getCellToken(inputString, 0, cellToken);
     
-        System.out.println(printCellToken(cellID));
+        System.out.println(theSpreadsheet.printCellToken(cellToken));
         System.out.println(": ");
     
         if ((cellToken.getRow() < 0) ||
@@ -78,7 +78,7 @@ public class SpreadsheetApp {
     private static void menuChangeCellFormula(Spreadsheet theSpreadsheet) {
         String inputCell;
         String inputFormula;
-        CellToken cellToken;
+        CellToken cellToken = new CellToken();
         Stack expTreeTokenStack;
         // ExpressionTreeToken expTreeToken;
     
@@ -100,7 +100,7 @@ public class SpreadsheetApp {
         // "A1 * B7"
         System.out.println("Enter the cell's new formula: ");
         inputFormula = readString();
-        expTreeTokenStack = getFormula (inputFormula);
+        expTreeTokenStack = theSpreadsheet.getFormula (inputFormula);
     
         /*
         // This code prints out the expression stack from
@@ -119,6 +119,11 @@ public class SpreadsheetApp {
     public static void main(String[] args) {
         Spreadsheet theSpreadsheet = new Spreadsheet(8);
 
+        for (Cell:
+             theSpreadsheet) {
+            
+        }
+        System.out.println(theSpreadsheet);
         boolean done = false;
         String command = "";
     

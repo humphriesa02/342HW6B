@@ -60,6 +60,7 @@ public class OperatorToken extends Token {
                 System.exit(0);
                 break;
         }
+        return -1;
     }
 
     /**
@@ -97,5 +98,6 @@ public class OperatorToken extends Token {
                 System.exit(0);
                 break;
         }
+        return -1;
     }
 }

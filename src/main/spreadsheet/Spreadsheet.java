@@ -1,5 +1,6 @@
 package main.spreadsheet;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class Spreadsheet {
@@ -8,6 +9,7 @@ public class Spreadsheet {
     // container for our cells creating a grid of cells
     // columns wide and rows deep
     private static final Cell[][] cells = new Cell[rows][columns];
+    private final int BadCell = -1;
 
     public Spreadsheet(){
 
@@ -40,6 +42,14 @@ public class Spreadsheet {
          */
     }
 
+    public void printAllFormulas(){
+
+    }
+
+    public String printCellToken(CellToken cellToken){
+        return "Null";
+    }
+
     /**
      * getFormula
      *
@@ -67,7 +77,7 @@ public class Spreadsheet {
 
         int literalValue = 0;
 
-        CellToken cellToken;
+        CellToken cellToken = new CellToken();
         int column = 0;
         int row = 0;
 
@@ -157,7 +167,6 @@ public class Spreadsheet {
 
             } else if (Character.isUpperCase(ch)) {
                 // We found a cell reference token
-                CellToken cellToken = new CellToken();
                 index = getCellToken(formula, index, cellToken);
                 if (cellToken.getRow() == BadCell) {
                     error = true;
@@ -296,6 +305,6 @@ public class Spreadsheet {
     }
 
     void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack){
-        cells[cellToken.getRow()][cellToken.getColumn()].Evaluate(this);
+        cells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack);
     }
 }

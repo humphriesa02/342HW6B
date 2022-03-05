@@ -10,13 +10,21 @@ public class Cell {
     private String formulaPostOrder;
     // the expression tree below represents the formula
     private ExpressionTree expressionTree;
-    private Stack stackOfTokens;
 
-    private final int BadCell = -1;
+    //private final int BadCell = -1;
 
-    public void Evaluate (Spreadsheet spreadsheet, Stack expTreeTokenStack){
+    public Cell(){
+        formula = "";
+        value = 0;
+        expressionTree = null;
+    }
+    public void stackToTree(Stack expTreeTokenStack){
         expressionTree.buildExpressionTree(expTreeTokenStack);
-        value = expressionTree.getValue();
+       //value = expressionTree.getValue();
+    }
+
+    public void Evaluate (Spreadsheet spreadsheet){
+
     }
 
 
