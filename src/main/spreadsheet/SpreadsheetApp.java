@@ -118,7 +118,7 @@ public class SpreadsheetApp {
     
     public static void main(String[] args) {
         Spreadsheet theSpreadsheet = new Spreadsheet(8);
-        
+
         System.out.println(theSpreadsheet);
         boolean done = false;
         String command = "";

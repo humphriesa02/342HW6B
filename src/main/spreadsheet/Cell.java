@@ -16,7 +16,7 @@ public class Cell {
     public Cell(){
         formula = "";
         value = 0;
-        expressionTree = null;
+        expressionTree = new ExpressionTree();
     }
     public void stackToTree(Stack expTreeTokenStack){
         expressionTree.buildExpressionTree(expTreeTokenStack);

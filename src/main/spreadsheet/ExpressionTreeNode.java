@@ -11,4 +11,8 @@ public class ExpressionTreeNode {
         this.left = left;
         this.right = right;
     }
+
+    public Token getToken(){
+        return token;
+    }
 }
