@@ -96,7 +96,8 @@ public class SpreadsheetApp {
             System.out.println("Bad cell.");
             return;
         }
-    
+
+        // "A1 * B7"
         System.out.println("Enter the cell's new formula: ");
         inputFormula = readString();
         expTreeTokenStack = getFormula (inputFormula);

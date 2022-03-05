@@ -26,8 +26,12 @@ public class Spreadsheet {
 
     public void printValues(){
         /**
-         * for each cell in cells ; print their value
+         * for each cell in cells ; print their values
+         *
+         * for (cell : cells)
+         *      cell.evaluate
          */
+
     }
 
     public void printCellFormula(CellToken cellToken){
@@ -291,4 +295,7 @@ public class Spreadsheet {
         return index;
     }
 
+    void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack){
+        cells[cellToken.getRow()][cellToken.getColumn()].Evaluate(this);
+    }
 }
