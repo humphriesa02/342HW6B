@@ -24,16 +24,16 @@ public class ExpressionTree {
     /**
      * Makes a tree from stack of tokens.
      */
-    public void tokenTree(Stack<Token> stackOfTokens) {
-        root = getTokens(stackOfTokens);
+    public void buildExpressionTree(Stack<Token> stackOfTokens) {
+        root = GetExpressionTree(stackOfTokens);
         if (!stackOfTokens.isEmpty()) {
             System.out.println("Cannot make a tree!");
         }
     }
 
-    /**
+  /*  *//**
      * Organize tokens from stack into a tree. (STILL WORKING ON METHOD)
-     */
+     *//*
     public ExpressionTreeNode getTokens(Stack<Token> stackOfTokens) {
         ExpressionTreeNode tree = null;
         Token token;
@@ -42,7 +42,7 @@ public class ExpressionTree {
             return null;
 
         return null; // ignore for now.
-    }
+    }*/
     public void printTree(){
 
     }
@@ -50,6 +50,13 @@ public class ExpressionTree {
 //
 //    }
 
+    /**
+     * Internal building of tree, we call this on root
+     * Sets roots children and all subsequent children
+     * Based on the stack provided
+     * @param s
+     * @return
+     */
     ExpressionTreeNode GetExpressionTree(Stack s) {
         ExpressionTreeNode returnTree;
         Token token;
