@@ -21,6 +21,10 @@ public class Cell {
         expressionTree = new ExpressionTree();
     }
 
+    public void setFormula(String formula){
+        this.formula = formula;
+    }
+
     /**
      * returns the formula
      * @return
@@ -43,10 +47,56 @@ public class Cell {
      * buildExpressionTree which takes a stack
      * @param expTreeTokenStack
      */
-    public void stackToTree(Stack expTreeTokenStack){
+    public void stackToTree(Stack expTreeTokenStack, Spreadsheet spreadsheet){
         expressionTree.buildExpressionTree(expTreeTokenStack);
-       //value = expressionTree.getValue();
+        //value = getValue(expressionTree.getRoot(), spreadsheet);
     }
+    /*public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
+        *//**
+         * Look through the tree and find value
+         * Gonna need to use priority
+         *//*
+
+        if(rootNode == null)
+            return 0;
+        // Leaf node
+        if(rootNode.left == null && rootNode.left == null){
+            LiteralToken rootToken = (LiteralToken) rootNode.getToken();
+            return rootToken.getValue();
+        }
+        // Evaluate left subtree
+        Token leftToken = getValue(rootNode.left, spreadsheet);
+        int leftVal = 0;
+        // Evaluate right subtree
+        Token rightToken = rootNode.right.getToken();
+        int rightVal = 0;
+
+        OperatorToken parentNode = (OperatorToken) rootNode.getToken();
+        if(leftToken instanceof CellToken){
+            leftVal = spreadsheet.getCellValue((CellToken) leftToken);
+        }else if(leftToken instanceof LiteralToken){
+            leftVal = ((LiteralToken) leftToken).getValue();
+        }
+        if(rightToken instanceof CellToken){
+            rightVal = spreadsheet.getCellValue((CellToken) rightToken);
+        }else if(rightToken instanceof LiteralToken){
+            rightVal = ((LiteralToken) rightToken).getValue();
+        }
+
+        if (parentNode.getOperatorToken() == '+'){
+            return leftVal + rightVal;
+        }
+        if (parentNode.getOperatorToken() == '-'){
+            return leftVal - rightVal;
+        }
+
+        if (parentNode.getOperatorToken() == '*')
+            return leftVal * rightVal;
+
+        return leftVal / rightVal;
+
+    }*/
+
 
     public void Evaluate (Spreadsheet spreadsheet){
 

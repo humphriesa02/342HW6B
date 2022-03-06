@@ -100,17 +100,17 @@ public class SpreadsheetApp {
         // "A1 * B7"
         System.out.println("Enter the cell's new formula: ");
         inputFormula = readString();
-        expTreeTokenStack = theSpreadsheet.getFormula (inputFormula);
+        theSpreadsheet.setCellFormula(cellToken, inputFormula);
+        expTreeTokenStack = theSpreadsheet.getFormula(inputFormula);
     
-        /*
+
         // This code prints out the expression stack from
         // top to bottom (that is, reverse of postfix).
-        while (!expTreeTokenStack.isEmpty())
+        /*while (!expTreeTokenStack.isEmpty())
         {
-            expTreeToken = expTreeTokenStack.topAndPop();
+            Token expTreeToken = (Token)expTreeTokenStack.pop();
             printExpressionTreeToken(expTreeToken);
-        }
-        */
+        }*/
     
         theSpreadsheet.changeCellFormulaAndRecalculate(cellToken, expTreeTokenStack);
         System.out.println();

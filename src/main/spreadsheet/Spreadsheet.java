@@ -43,6 +43,10 @@ public class Spreadsheet {
         return spreadsheetCells.length;
     }
 
+    public int getCellValue(CellToken cellToken){
+        return spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].getValue();
+    }
+
     /**
      * Prints the value of each cell
      * in the spreadsheetCells array.
@@ -70,6 +74,9 @@ public class Spreadsheet {
         }
     }
 
+    public void setCellFormula(CellToken cellToken, String formula){
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].setFormula(formula);
+    }
     /**
      * Prints the formula of cellToken
      * by finding it inside spreadsheetCells
@@ -227,7 +234,6 @@ public class Spreadsheet {
             // a parse error; return the empty stack
             returnStack.clear();
         }
-
         return returnStack;
     }
     /**
@@ -350,6 +356,6 @@ public class Spreadsheet {
      * @param expTreeTokenStack
      */
     void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack){
-        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack);
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack, this);
     }
 }

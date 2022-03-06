@@ -16,6 +16,10 @@ public class ExpressionTree {
         this.root = myRoot;
     }
 
+    public ExpressionTreeNode getRoot(){
+        return root;
+    }
+
     // Empty tree.
     public void makeEmpty(){
         this.root = null;
@@ -31,18 +35,7 @@ public class ExpressionTree {
         }
     }
 
-  /*  *//**
-     * Organize tokens from stack into a tree. (STILL WORKING ON METHOD)
-     *//*
-    public ExpressionTreeNode getTokens(Stack<Token> stackOfTokens) {
-        ExpressionTreeNode tree = null;
-        Token token;
 
-        if(stackOfTokens.isEmpty())
-            return null;
-
-        return null; // ignore for now.
-    }*/
     public void printTree(){
         
     }
