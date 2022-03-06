@@ -53,6 +53,12 @@ public class CellToken extends Token {
         return column;
     }
 
-
+    public String toLetter(int c) {
+        if( c/26 == 0 ) {
+            return "" + (char)((int)'A' + (c%26));
+        } else {
+            return toLetter((c/26)-1) + (char)((int)'A' + (c%26));
+        }
+    }
 
 }
