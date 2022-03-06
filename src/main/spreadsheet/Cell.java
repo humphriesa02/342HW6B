@@ -47,9 +47,8 @@ public class Cell {
      * buildExpressionTree which takes a stack
      * @param expTreeTokenStack
      */
-    public void stackToTree(Stack expTreeTokenStack, Spreadsheet spreadsheet){
+    public void stackToTree(Stack expTreeTokenStack){
         expressionTree.buildExpressionTree(expTreeTokenStack);
-        //value = getValue(expressionTree.getRoot(), spreadsheet);
     }
     /*public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
         *//**

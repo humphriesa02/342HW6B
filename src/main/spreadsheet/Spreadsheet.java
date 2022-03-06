@@ -113,6 +113,8 @@ public class Spreadsheet {
      * level of precedence, grouping is from left to right.
      *
      * This algorithm follows the algorithm described in Weiss, pages 105-108.
+     *
+     * A1 + A2
      */
     Stack getFormula(String formula) {
         Stack returnStack = new Stack();  // stack of Tokens (representing a postfix expression)
@@ -357,6 +359,6 @@ public class Spreadsheet {
      * @param expTreeTokenStack
      */
     void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack){
-        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack, this);
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack);
     }
 }
