@@ -86,7 +86,7 @@ public class Spreadsheet {
         /**
          * Given cellToken, print the formula it points to
          */
-        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].getFormula();
+        System.out.println(spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].getFormula());
     }
 
     public String printCellToken(CellToken cellToken){
