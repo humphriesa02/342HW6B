@@ -90,8 +90,7 @@ public class Spreadsheet {
     }
 
     public String printCellToken(CellToken cellToken){
-        //return cellToken.getColumn() + " " + cellToken.getRow();
-        return cellToken.toLetter(cellToken.getColumn()) + " " + cellToken.getRow();
+        return cellToken.getColumn() + " " + cellToken.getRow();
     }
 
     /**
