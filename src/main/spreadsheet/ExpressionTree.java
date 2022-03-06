@@ -35,9 +35,18 @@ public class ExpressionTree {
         }
     }
 
-
-    public void printTree(){
-        
+    /***
+     * Post order traversal to print tree.
+     * @param node
+     */
+    public void printTree(ExpressionTreeNode node){
+        if(root == null) {
+            System.out.println("Empty tree!");
+        } else if(node != null) {
+            printTree(node.left);
+            printTree(node.right);
+            System.out.println(node.toString());
+        }
     }
 //    public int Evaluate(Spreadsheet spreadsheet){
 //
