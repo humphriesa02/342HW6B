@@ -13,6 +13,8 @@ public class Spreadsheet {
     // Default cell if we are out of bounds on a call
     private final int BadCell = -1;
 
+    private Graph dependency;
+
     // default constructor makes spreadsheet of size ROWS x COLS
     public Spreadsheet(){
         spreadsheetCells = new Cell[ROWS][COLS];
@@ -27,6 +29,7 @@ public class Spreadsheet {
     // Constructor passing in size in rowCols, makes a
     // spreadsheet of size rowCols x rowCols
     public Spreadsheet(int rowCols){
+        dependency = new Graph(this);
         spreadsheetCells = new Cell[rowCols][rowCols];
         for(int i = 0; i < spreadsheetCells.length; i++){
             for(int j = 0; j < spreadsheetCells[i].length; j++)
@@ -74,9 +77,9 @@ public class Spreadsheet {
         }
     }
 
-    public void setCellFormula(CellToken cellToken, String formula){
+   /* public void setCellFormula(CellToken cellToken, String formula){
         spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].setFormula(formula);
-    }
+    }*/
     /**
      * Prints the formula of cellToken
      * by finding it inside spreadsheetCells
@@ -358,7 +361,12 @@ public class Spreadsheet {
      * @param cellToken
      * @param expTreeTokenStack
      */
-    void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack){
-        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].stackToTree(expTreeTokenStack);
+    void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack, String formula){
+        Cell changedCell = spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
+        changedCell.stackToTree(expTreeTokenStack);
+        changedCell.setFormula(formula);
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()] = changedCell;
+        dependency.addEdge(changedCell, changedCell.getReferenceTokens());
+        graph.topSort();
     }
 }

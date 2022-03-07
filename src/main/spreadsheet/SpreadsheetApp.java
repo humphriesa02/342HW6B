@@ -100,7 +100,6 @@ public class SpreadsheetApp {
         // "A1 * B7"
         System.out.println("Enter the cell's new formula: ");
         inputFormula = readString();
-        theSpreadsheet.setCellFormula(cellToken, inputFormula);
         expTreeTokenStack = theSpreadsheet.getFormula(inputFormula);
     
 

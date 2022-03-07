@@ -1,5 +1,6 @@
 package main.spreadsheet;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Cell {
@@ -11,6 +12,8 @@ public class Cell {
     private String formulaPostOrder;
     // the expression tree below represents the formula
     private ExpressionTree expressionTree;
+
+    private ArrayList<CellToken> referenceTokens;
 
     // Constructor for cell, sets each initial
     // cell to have value 0, no formula,
@@ -41,6 +44,10 @@ public class Cell {
         return value;
     }
 
+    public ArrayList<CellToken> getReferenceTokens(){
+        return referenceTokens;
+    }
+
     /**
      * sets our expression tree
      * to the outcome of
@@ -48,7 +55,18 @@ public class Cell {
      * @param expTreeTokenStack
      */
     public void stackToTree(Stack expTreeTokenStack){
+        Stack tokenStackCopy = expTreeTokenStack;
+        while(!tokenStackCopy.isEmpty()){
+            Token token = (Token)tokenStackCopy.pop();
+            if(token instanceof CellToken){
+                setReferenceTokens((CellToken)token);
+            }
+        }
         expressionTree.buildExpressionTree(expTreeTokenStack);
+    }
+
+    private void setReferenceTokens(CellToken token){
+        referenceTokens.add(token);
     }
     /*public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
         *//**
