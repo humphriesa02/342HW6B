@@ -8,12 +8,10 @@ public class Cell {
     private String formula;
     // value the formula represents
     private int value;
-    // Not used yet
-    private String formulaPostOrder;
     // the expression tree below represents the formula
-    private ExpressionTree expressionTree;
+    private final ExpressionTree expressionTree;
 
-    private ArrayList<CellToken> adjacencyCells;
+    private final ArrayList<CellToken> adjacencyCells;
 
     private int inDegree;
 
@@ -34,7 +32,7 @@ public class Cell {
 
     /**
      * returns the formula
-     * @return
+     * @return formula
      */
     public String getFormula(){
         return formula;
@@ -42,7 +40,7 @@ public class Cell {
 
     /**
      * returns the value
-     * @return
+     * @return value
      */
     public int getValue(){
         return value;
@@ -93,7 +91,7 @@ public class Cell {
             return 0;
 
         // Leaf node, value
-        if(rootNode.left == null && rootNode.left == null){
+        if(rootNode.left == null && rootNode.right == null){
             Token token = rootNode.getToken();
             if(token instanceof LiteralToken){
                 LiteralToken literalToken = (LiteralToken) token;
@@ -136,7 +134,5 @@ public class Cell {
     public void Evaluate (Spreadsheet spreadsheet){
         this.value = getValue(this.expressionTree.getRoot(), spreadsheet);
     }
-    
-
 
 }

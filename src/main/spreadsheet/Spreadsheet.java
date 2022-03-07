@@ -40,7 +40,7 @@ public class Spreadsheet {
     // Constructor passing in size in rowCols, makes a
     // spreadsheet of size rowCols x rowCols
     public Spreadsheet(int rowCols){
-        dependency = new Graph(this);
+        dependency = new Graph();
         spreadsheetCells = new Cell[rowCols][rowCols];
         for(int i = 0; i < spreadsheetCells.length; i++){
             for(int j = 0; j < spreadsheetCells[i].length; j++)
@@ -403,6 +403,8 @@ public class Spreadsheet {
         while(!tokenStackCopy.isEmpty()){
             Token token = (Token)tokenStackCopy.pop();
             if(token instanceof CellToken){
+                Cell currCell = spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
+                currCell.setInDegree(currCell.getIndegree() + 1);
                 spreadsheetCells[((CellToken) token).getRow()][((CellToken)token).getColumn()].setAdjacencyCells(cellToken);
             }
         }

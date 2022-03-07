@@ -2,17 +2,23 @@ package main.spreadsheet;
 
 import java.util.*;
 
+/**
+ * Dependency Graph of Cells within
+ * a 2D Spreadsheet represented by an
+ * ArrayList
+ */
 public class Graph {
 
-    // Dependency graph of Cells within a 2D array
 
-    // Adjacency of cells
+    // Cells in an ArrayList
     private ArrayList<Cell> addedCells;
 
-    public Graph(Spreadsheet spreadsheet) {
+    // Constructor setting the new ArrayList
+    public Graph() {
         addedCells = new ArrayList<>();
     }
 
+    // Adds cells to the list
     public void addEdge(Cell cell){
         addedCells.add(cell);
     }
@@ -29,8 +35,6 @@ public class Graph {
         for(Cell c : addedCells){
             if(c.getIndegree() == 0)
                 cellQueue.add(c);
-            else
-                throw new IllegalStateException("Spreadsheet has a cycle!");
         }
 
         LinkedList<Cell> vertexList = new LinkedList<>();
@@ -48,9 +52,13 @@ public class Graph {
                 }
             }
         }
-        if(vertexList.size() != addedCells.size())
-            throw new IllegalStateException("Spreadsheet has a cycle!");
+        if(vertexList.size() != addedCells.size()){
+            System.out.println("Spreadsheet has a cycle!");
+            return;
+        }
 
+        // Looks at each cell in the VertexList and
+        // Evaluates them
         for (Cell cell : vertexList)
             cell.Evaluate(spreadsheet);
     }
