@@ -44,19 +44,11 @@ class MainWindow extends JFrame implements ActionListener {
         Action changeCell = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                String inputCell;
-                String inputFormula;
-                CellToken cellToken = new CellToken();
-                Stack expTreeTokenStack;
-
-                inputFormula = readString();
-                expTreeTokenStack = theSpreadsheet.getFormula(inputFormula);
-                theSpreadsheet.changeCellFormulaAndRecalculate(cellToken, expTreeTokenStack, inputFormula);
-
+            //Action when user presses the Enter key in a JTextField
 
             }
         };
+        //Creates an array that contains the JTextFields
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 cellsText[i][j] = new JTextField();
