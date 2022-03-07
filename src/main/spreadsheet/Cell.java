@@ -86,11 +86,11 @@ public class Cell {
      * @return
      */
     public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
-
+        // Empty expression tree
         if(rootNode == null)
             return 0;
 
-        // Leaf node, value
+        // When a node becomes a leaf
         if(rootNode.left == null && rootNode.right == null){
             Token token = rootNode.getToken();
             if(token instanceof LiteralToken){
@@ -106,15 +106,14 @@ public class Cell {
         // Evaluate right subtree
         int rightVal = getValue(rootNode.right, spreadsheet);
 
+        // Gets the parent node of left and right vals, which is an operator
         OperatorToken parentNode = (OperatorToken) rootNode.getToken();
 
-
-        if (parentNode.getOperatorToken() == '+'){
+        if (parentNode.getOperatorToken() == '+')
             return leftVal + rightVal;
-        }
-        if (parentNode.getOperatorToken() == '-'){
+
+        if (parentNode.getOperatorToken() == '-')
             return leftVal - rightVal;
-        }
 
         if (parentNode.getOperatorToken() == '*')
             return leftVal * rightVal;
@@ -125,7 +124,6 @@ public class Cell {
         return leftVal / rightVal;
 
     }
-
     /**
      * Calls the recursive getValue
      * and assigns it to the cells value
@@ -134,5 +132,4 @@ public class Cell {
     public void Evaluate (Spreadsheet spreadsheet){
         this.value = getValue(this.expressionTree.getRoot(), spreadsheet);
     }
-
 }

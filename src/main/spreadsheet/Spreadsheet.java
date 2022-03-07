@@ -79,7 +79,6 @@ public class Spreadsheet {
             }
             System.out.println();
         }
-
     }
 
     /**
