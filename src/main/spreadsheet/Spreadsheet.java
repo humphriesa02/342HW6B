@@ -75,7 +75,8 @@ public class Spreadsheet {
     public void printValues(){
         for(int i = 0; i < spreadsheetCells.length; i++){
             for (int j = 0; j < spreadsheetCells[i].length; j++){
-                System.out.print(spreadsheetCells[i][j].getValue() + " ");
+                //System.out.print(spreadsheetCells[i][j].getValue() + " ");
+                System.out.printf("%-4d", spreadsheetCells[i][j].getValue());
             }
             System.out.println();
         }
