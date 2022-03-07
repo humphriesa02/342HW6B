@@ -52,7 +52,9 @@ class MainWindow extends JFrame implements ActionListener {
         //Creates an array that contains the JTextFields
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                JLabel cellLabel = new JLabel(i + " " + j);
+                String c = toLetter(i);
+                JLabel cellLabel = new JLabel(c + " " + j);
+                cellLabel.setHorizontalAlignment(SwingConstants.RIGHT);
                 cellPanel.add(cellLabel);
                 cellsText[i][j] = new JTextField();
                 cellsText[i][j].addActionListener(changeCell);
@@ -61,6 +63,13 @@ class MainWindow extends JFrame implements ActionListener {
         }
         mainPanel.add(cellPanel);
         setVisible(true);
+    }
+    public String toLetter(int c) {
+        if( c/26 == 0 ) {
+            return "" + (char)((int)'A' + (c%26));
+        } else {
+            return toLetter((c/26)-1) + (char)((int)'A' + (c%26));
+        }
     }
 
 }
