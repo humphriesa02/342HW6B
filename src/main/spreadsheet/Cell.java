@@ -121,6 +121,9 @@ public class Cell {
         if (parentNode.getOperatorToken() == '*')
             return leftVal * rightVal;
 
+        if(parentNode.getOperatorToken() == '^')
+            return (int) Math.pow(leftVal, rightVal);
+
         return leftVal / rightVal;
 
     }

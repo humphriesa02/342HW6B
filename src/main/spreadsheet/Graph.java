@@ -18,9 +18,11 @@ public class Graph {
     }
 
     /**
-     * Loop through our graph, topologically,
-     * then with each cell we find evaluate it
-     * with its reference.
+     * Topological sort based off
+     * Kahn's algorithm
+     * Runtime is O(V + E),
+     * with V being vertices count and E
+     * consisting of edges.
      */
     public void topSort(Spreadsheet spreadsheet) {
         Queue<Cell> cellQueue = new LinkedList<>();

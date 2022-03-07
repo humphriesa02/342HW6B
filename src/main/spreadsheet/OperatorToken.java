@@ -6,6 +6,7 @@ public class OperatorToken extends Token {
     public static final char Mult  = '*';
     public static final char Div   = '/';
     public static final char LeftParen  = '(';
+    public static final char Exp = '^';
 
     private char operatorToken;
 
@@ -28,7 +29,8 @@ public class OperatorToken extends Token {
                 (ch == Minus) ||
                 (ch == Mult) ||
                 (ch == Div) ||
-                (ch == LeftParen) );
+                (ch == LeftParen)||
+                (ch == Exp));
     }
 
     /*
@@ -53,7 +55,8 @@ public class OperatorToken extends Token {
                 return 1;
             case LeftParen:
                 return 2;
-
+            case Exp:
+                return 2;
             default:
                 // This case should NEVER happen
                 System.out.println("Error in priority.");
@@ -91,7 +94,8 @@ public class OperatorToken extends Token {
                 return 1;
             case LeftParen:
                 return 2;
-
+            case Exp:
+                return 2;
             default:
                 // This case should NEVER happen
                 System.out.println("Error in operatorPriority.");

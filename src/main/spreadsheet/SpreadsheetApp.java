@@ -84,8 +84,13 @@ public class SpreadsheetApp {
     
         System.out.println("Enter the cell to change: ");
         inputCell = readString();
-        theSpreadsheet.getCellToken (inputCell, 0, cellToken);
-    
+        if(theSpreadsheet.isLetterOrNum(inputCell) == false){
+            System.out.println("Please enter a valid cell!");
+            return;
+        }
+        else
+            theSpreadsheet.getCellToken (inputCell, 0, cellToken);
+
         // error check to make sure the row and column
         // are within spreadsheet array bounds.
         if ((cellToken.getRow() < 0) ||
@@ -108,7 +113,7 @@ public class SpreadsheetApp {
         /*while (!expTreeTokenStack.isEmpty())
         {
             Token expTreeToken = (Token)expTreeTokenStack.pop();
-            printExpressionTreeToken(expTreeToken);
+            theSpreadsheet.printExpressionTreeToken(expTreeToken);
         }*/
     
         theSpreadsheet.changeCellFormulaAndRecalculate(cellToken, expTreeTokenStack, inputFormula);

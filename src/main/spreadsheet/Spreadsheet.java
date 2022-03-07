@@ -2,8 +2,18 @@ package main.spreadsheet;
 
 import java.util.Stack;
 
+/**
+ * TCSS 342
+ * Authors: Dylan, Andrew, Alex
+ * March 2022
+ *
+ * Spreadsheet object class that allows for
+ * cells to be places in a 2D array.
+ * These cells can contain a number of
+ * formulas or literal values
+ */
 public class Spreadsheet {
-    // Final variables for rows and cols, default to them
+    // Final variables for rows and cols, default
     // if we do not specify the size of our spreadsheet in constructor
     private static final int ROWS = 4;
     private static final int COLS = 4;
@@ -12,7 +22,8 @@ public class Spreadsheet {
     private static Cell[][] spreadsheetCells;
     // Default cell if we are out of bounds on a call
     private final int BadCell = -1;
-
+    // Graph we set cells into when we change them
+    // calls topsort
     private Graph dependency;
 
     // default constructor makes spreadsheet of size ROWS x COLS
@@ -37,6 +48,7 @@ public class Spreadsheet {
         }
 
     }
+    // GETTERS
 
     public int getNumColumns() {
         return spreadsheetCells[0].length;
@@ -49,6 +61,12 @@ public class Spreadsheet {
     public int getCellValue(CellToken cellToken){
         return spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].getValue();
     }
+
+    public Cell getCell(CellToken cellToken){
+        return spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
+    }
+
+    // PRINT STATEMENTS
 
     /**
      * Prints the value of each cell
@@ -78,9 +96,23 @@ public class Spreadsheet {
         }
     }
 
-   /* public void setCellFormula(CellToken cellToken, String formula){
-        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].setFormula(formula);
-    }*/
+    public void printExpressionTreeToken(Token token){
+        if(token instanceof CellToken){
+            CellToken cellToken = (CellToken) token;
+            System.out.println(cellToken.getRow() + cellToken.getColumn());
+        }
+        else if(token instanceof LiteralToken){
+            LiteralToken literalToken = (LiteralToken) token;
+            System.out.println(literalToken.getValue());
+        }
+        else if(token instanceof OperatorToken){
+            OperatorToken operatorToken = (OperatorToken) token;
+            System.out.println(operatorToken.getOperatorToken());
+        }
+
+
+    }
+
     /**
      * Prints the formula of cellToken
      * by finding it inside spreadsheetCells
@@ -158,6 +190,7 @@ public class Spreadsheet {
                     case OperatorToken.Mult:
                     case OperatorToken.Div:
                     case OperatorToken.LeftParen:
+                    case OperatorToken.Exp:
                         // push operatorTokens onto the output stack until
                         // we reach an operator on the operator stack that has
                         // lower priority than the current one.
@@ -380,7 +413,26 @@ public class Spreadsheet {
         dependency.topSort(this);
     }
 
-    public Cell getCell(CellToken cellToken){
-        return spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
+    /**
+     * Based off of
+     * TutorialPoint.com
+     * Checks if a string is
+     * only letters and numbers
+     * @param s
+     * @return
+     */
+    public boolean isLetterOrNum(String s){
+        if(s == null)
+            return false;
+        int len = s.length();
+        for (int i = 0; i < len; i++){
+            if(Character.isLetterOrDigit(s.charAt(i)) == false)
+                return false;
+        }
+        return true;
     }
+
+      /* public void setCellFormula(CellToken cellToken, String formula){
+        spreadsheetCells[cellToken.getRow()][cellToken.getColumn()].setFormula(formula);
+    }*/
 }
