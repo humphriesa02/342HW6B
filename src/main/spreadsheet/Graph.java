@@ -8,8 +8,6 @@ import java.util.*;
  * ArrayList
  */
 public class Graph {
-
-
     // Cells in an ArrayList
     private ArrayList<Cell> addedCells;
 
