@@ -365,6 +365,7 @@ public class Spreadsheet {
      */
     void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack, String formula){
         Cell changedCell = spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
+        //Constructing the adjacency list
         Stack tokenStackCopy = (Stack) expTreeTokenStack.clone();
         while(!tokenStackCopy.isEmpty()){
             Token token = (Token)tokenStackCopy.pop();
@@ -377,5 +378,9 @@ public class Spreadsheet {
         spreadsheetCells[cellToken.getRow()][cellToken.getColumn()] = changedCell;
         dependency.addEdge(changedCell);
         dependency.topSort(this);
+    }
+
+    public Cell getCell(CellToken cellToken){
+        return spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
     }
 }

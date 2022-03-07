@@ -15,6 +15,8 @@ public class Cell {
 
     private ArrayList<CellToken> adjacencyCells;
 
+    private int inDegree;
+
     // Constructor for cell, sets each initial
     // cell to have value 0, no formula,
     // and a new expression tree based on the value 0
@@ -23,6 +25,7 @@ public class Cell {
         value = 0;
         expressionTree = new ExpressionTree();
         adjacencyCells = new ArrayList<>();
+        inDegree = 0;
     }
 
     public void setFormula(String formula){
@@ -60,13 +63,32 @@ public class Cell {
         expressionTree.buildExpressionTree(expTreeTokenStack);
     }
 
+    /**
+     * Adjacency cell setter
+     * @param token
+     */
     public void setAdjacencyCells(CellToken token){
         adjacencyCells.add(token);
     }
+
+    public int getIndegree(){
+        return inDegree;
+    }
+
+    public void setInDegree(int degree){
+        this.inDegree = degree;
+    }
+
+    /**
+     * Recursive method to output
+     * the value of our expression tree
+     * for this node
+     * @param rootNode
+     * @param spreadsheet
+     * @return
+     */
     public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
-        /**
-         * Look through the tree and find value
-         */
+
         if(rootNode == null)
             return 0;
 
@@ -103,7 +125,11 @@ public class Cell {
 
     }
 
-
+    /**
+     * Calls the recursive getValue
+     * and assigns it to the cells value
+     * @param spreadsheet
+     */
     public void Evaluate (Spreadsheet spreadsheet){
         this.value = getValue(this.expressionTree.getRoot(), spreadsheet);
     }
