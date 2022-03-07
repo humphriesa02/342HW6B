@@ -105,7 +105,7 @@ public class Cell {
 
 
     public void Evaluate (Spreadsheet spreadsheet){
-        value = getValue(expressionTree.getRoot(), spreadsheet);
+        this.value = getValue(this.expressionTree.getRoot(), spreadsheet);
     }
     
 

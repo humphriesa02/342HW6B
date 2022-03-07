@@ -9,21 +9,17 @@ import java.util.Stack;
 public class Graph {
 
     // Dependency graph of Cells within a 2D array
-    // Total vertices
-    private int V;
+
     // Adjacency of cells
-    private ArrayList<Cell> addedCells, order;
-    private ArrayList<ArrayList<CellToken>> adjacent;
+    private ArrayList<Cell> addedCells;
 
 
     public Graph(Spreadsheet spreadsheet) {
         addedCells = new ArrayList<>();
-        order = new ArrayList<>();
     }
 
     public void addEdge(Cell cell){
         addedCells.add(cell);
-        V++;
     }
 
     void topSortHelp(int v, boolean visited[], Stack<Cell> cellStack) {

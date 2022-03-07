@@ -57,8 +57,9 @@ public class Spreadsheet {
     public void printValues(){
         for(int i = 0; i < spreadsheetCells.length; i++){
             for (int j = 0; j < spreadsheetCells[i].length; j++){
-                System.out.println(spreadsheetCells[i][j].getValue());
+                System.out.print(spreadsheetCells[i][j].getValue() + " ");
             }
+            System.out.println();
         }
 
     }
@@ -126,7 +127,7 @@ public class Spreadsheet {
 
         int literalValue = 0;
 
-        CellToken cellToken = new CellToken();
+        //CellToken cellToken = new CellToken();
         int column = 0;
         int row = 0;
 
@@ -216,6 +217,7 @@ public class Spreadsheet {
 
             } else if (Character.isUpperCase(ch)) {
                 // We found a cell reference token
+                CellToken cellToken = new CellToken();
                 index = getCellToken(formula, index, cellToken);
                 if (cellToken.getRow() == BadCell) {
                     error = true;
