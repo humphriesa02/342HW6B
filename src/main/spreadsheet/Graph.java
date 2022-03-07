@@ -1,5 +1,6 @@
 package main.spreadsheet;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,45 +9,55 @@ import java.util.Stack;
 public class Graph {
 
     // Dependency graph of Cells within a 2D array
-
     // Total vertices
     private int V;
     // Adjacency of cells
-    //private ArrayList<ArrayList<Cell>> adjacent;
+    private ArrayList<Cell> addedCells, order;
+    private ArrayList<ArrayList<CellToken>> adjacent;
 
-    private HashMap<Cell, ArrayList<CellToken>> adjacentMap;
 
     public Graph(Spreadsheet spreadsheet) {
-        /*V = spreadsheet.getNumRows() + spreadsheet.getNumColumns();
-        adjacent = new ArrayList<>(V);
-
-        // First arraylist is of size total grid size
-        for(int i = 0; i < V; i++){
-            adjacent.add(new ArrayList<Cell>());
-        }*/
+        addedCells = new ArrayList<>();
+        order = new ArrayList<>();
     }
 
-    public void addEdge(Cell cell, ArrayList<CellToken> cellTokens){
-        adjacentMap.put(cell, cellTokens);
+    public void addEdge(Cell cell){
+        addedCells.add(cell);
+        V++;
     }
 
     void topSortHelp(int v, boolean visited[], Stack<Cell> cellStack) {
         visited[v] = true;
-        Cell currCell;
 
-        Iterator<Cell> iterator = adjacent.get(v).iterator();
-
-        while(iterator.hasNext()){
-            currCell = iterator.next();
-            if(!visited[currCell])
+        for(int i = 0; i < addedCells.size(); i++){
+            if(!visited[i])
+                topSortHelp(i, visited, cellStack);
         }
+
+        cellStack.push(addedCells.get(v));
     }
     /**
      * Loop through our graph, topologically,
      * then with each cell we find evaluate it
      * with its reference.
      */
-    public void topSort() {
+    public void topSort(Spreadsheet spreadsheet) {
 
+        Stack<Cell> sortedStack = new Stack<>();
+
+        boolean visited[] = new boolean[addedCells.size()];
+
+        for(int i = 0; i < addedCells.size(); i++)
+            visited[i] = false;
+
+        for(int i = 0; i < addedCells.size(); i++){
+            if(!visited[i])
+                topSortHelp(i,visited,sortedStack);
+        }
+
+        while(!sortedStack.isEmpty()){
+            Cell evalCell = sortedStack.pop();
+            evalCell.Evaluate(spreadsheet);
+        }
     }
 }

@@ -363,10 +363,17 @@ public class Spreadsheet {
      */
     void changeCellFormulaAndRecalculate(CellToken cellToken, Stack expTreeTokenStack, String formula){
         Cell changedCell = spreadsheetCells[cellToken.getRow()][cellToken.getColumn()];
+        Stack tokenStackCopy = (Stack) expTreeTokenStack.clone();
+        while(!tokenStackCopy.isEmpty()){
+            Token token = (Token)tokenStackCopy.pop();
+            if(token instanceof CellToken){
+                spreadsheetCells[((CellToken) token).getRow()][((CellToken)token).getColumn()].setAdjacencyCells(cellToken);
+            }
+        }
         changedCell.stackToTree(expTreeTokenStack);
         changedCell.setFormula(formula);
         spreadsheetCells[cellToken.getRow()][cellToken.getColumn()] = changedCell;
-        dependency.addEdge(changedCell, changedCell.getReferenceTokens());
-        graph.topSort();
+        dependency.addEdge(changedCell);
+        dependency.topSort(this);
     }
 }

@@ -13,7 +13,7 @@ public class Cell {
     // the expression tree below represents the formula
     private ExpressionTree expressionTree;
 
-    private ArrayList<CellToken> referenceTokens;
+    private ArrayList<CellToken> adjacencyCells;
 
     // Constructor for cell, sets each initial
     // cell to have value 0, no formula,
@@ -22,6 +22,7 @@ public class Cell {
         formula = "";
         value = 0;
         expressionTree = new ExpressionTree();
+        adjacencyCells = new ArrayList<>();
     }
 
     public void setFormula(String formula){
@@ -44,8 +45,8 @@ public class Cell {
         return value;
     }
 
-    public ArrayList<CellToken> getReferenceTokens(){
-        return referenceTokens;
+    public ArrayList<CellToken> getAdjacencyCells(){
+        return adjacencyCells;
     }
 
     /**
@@ -55,50 +56,38 @@ public class Cell {
      * @param expTreeTokenStack
      */
     public void stackToTree(Stack expTreeTokenStack){
-        Stack tokenStackCopy = expTreeTokenStack;
-        while(!tokenStackCopy.isEmpty()){
-            Token token = (Token)tokenStackCopy.pop();
-            if(token instanceof CellToken){
-                setReferenceTokens((CellToken)token);
-            }
-        }
+
         expressionTree.buildExpressionTree(expTreeTokenStack);
     }
 
-    private void setReferenceTokens(CellToken token){
-        referenceTokens.add(token);
+    public void setAdjacencyCells(CellToken token){
+        adjacencyCells.add(token);
     }
-    /*public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
-        *//**
+    public int getValue(ExpressionTreeNode rootNode, Spreadsheet spreadsheet){
+        /**
          * Look through the tree and find value
-         * Gonna need to use priority
-         *//*
-
+         */
         if(rootNode == null)
             return 0;
-        // Leaf node
+
+        // Leaf node, value
         if(rootNode.left == null && rootNode.left == null){
-            LiteralToken rootToken = (LiteralToken) rootNode.getToken();
-            return rootToken.getValue();
+            Token token = rootNode.getToken();
+            if(token instanceof LiteralToken){
+                LiteralToken literalToken = (LiteralToken) token;
+                return literalToken.getValue();
+            }else if(token instanceof CellToken){
+                CellToken cellToken = (CellToken) token;
+                return spreadsheet.getCellValue(cellToken);
+            }
         }
         // Evaluate left subtree
-        Token leftToken = getValue(rootNode.left, spreadsheet);
-        int leftVal = 0;
+        int leftVal = getValue(rootNode.left, spreadsheet);
         // Evaluate right subtree
-        Token rightToken = rootNode.right.getToken();
-        int rightVal = 0;
+        int rightVal = getValue(rootNode.right, spreadsheet);
 
         OperatorToken parentNode = (OperatorToken) rootNode.getToken();
-        if(leftToken instanceof CellToken){
-            leftVal = spreadsheet.getCellValue((CellToken) leftToken);
-        }else if(leftToken instanceof LiteralToken){
-            leftVal = ((LiteralToken) leftToken).getValue();
-        }
-        if(rightToken instanceof CellToken){
-            rightVal = spreadsheet.getCellValue((CellToken) rightToken);
-        }else if(rightToken instanceof LiteralToken){
-            rightVal = ((LiteralToken) rightToken).getValue();
-        }
+
 
         if (parentNode.getOperatorToken() == '+'){
             return leftVal + rightVal;
@@ -112,11 +101,11 @@ public class Cell {
 
         return leftVal / rightVal;
 
-    }*/
+    }
 
 
     public void Evaluate (Spreadsheet spreadsheet){
-
+        value = getValue(expressionTree.getRoot(), spreadsheet);
     }
     
 
