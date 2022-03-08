@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Stack;
 
 import static main.spreadsheet.SpreadsheetApp.readString;
@@ -57,7 +59,26 @@ class MainWindow extends JFrame implements ActionListener {
                 cellLabel.setHorizontalAlignment(SwingConstants.RIGHT);
                 cellPanel.add(cellLabel);
                 cellsText[i][j] = new JTextField();
-                cellsText[i][j].addActionListener(changeCell);
+                int finalI = i;
+                int finalJ = j;
+                cellsText[i][j].addKeyListener(new KeyAdapter() {
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                            CellToken currCellToken = new CellToken();
+
+                            JTextField cellsText = (JTextField) e.getSource();
+
+                            currCellToken.setRow(finalI);
+                            currCellToken.setColumn(finalJ);
+                            Stack expressionStack = spreadsheet.getFormula(cellsText.getText());
+
+                            spreadsheet.changeCellFormulaAndRecalculate(currCellToken, expressionStack, cellsText.getText());
+                            cellsText.setText(spreadsheet.getCell(currCellToken).getValue() + "");
+                            System.out.println(currCellToken.getRow() + " " + currCellToken.getColumn());
+                        }
+                    }
+                });
                 cellPanel.add(cellsText[i][j]);
             }
         }
