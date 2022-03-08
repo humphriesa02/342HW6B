@@ -3,6 +3,15 @@ package main.spreadsheet;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * TCSS 342
+ * Authors: Dylan, Andrew, Alex
+ * March 2022
+ *
+ * Cell data type, stores
+ * formulas, values, expressionTrees
+ * adjacencyCells, and indegrees.
+ */
 public class Cell {
     // formula represented in each cell i.e. "A1 + B2"
     private String formula;

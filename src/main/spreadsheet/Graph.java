@@ -3,6 +3,10 @@ package main.spreadsheet;
 import java.util.*;
 
 /**
+ * TCSS 342
+ * Authors: Dylan, Andrew, Alex
+ * March 2022
+ *
  * Dependency Graph of Cells within
  * a 2D Spreadsheet represented by an
  * ArrayList
