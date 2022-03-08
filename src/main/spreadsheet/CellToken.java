@@ -1,5 +1,9 @@
 package main.spreadsheet;
 
+/**
+ * Token that represents a Cell
+ * location
+ */
 public class CellToken extends Token {
 
     private int column; // column A = 0, B = 1, etc.
@@ -26,7 +30,7 @@ public class CellToken extends Token {
      * Setter for row.
      * @param myRow
      */
-    void setRow(int myRow) {
+    public void setRow(int myRow) {
         row = myRow;
     }
 
@@ -51,6 +55,21 @@ public class CellToken extends Token {
      */
     public int getColumn() {
         return column;
+    }
+
+    /**
+     * Converts an integer value to
+     * it's alphabetical equivalent
+     * (1 - 26)
+     * @param c
+     * @return
+     */
+    public String toLetter(int c) {
+        if( c/26 == 0 ) {
+            return "" + (char)((int)'A' + (c%26));
+        } else {
+            return toLetter((c/26)-1) + (char)((int)'A' + (c%26));
+        }
     }
 
 }

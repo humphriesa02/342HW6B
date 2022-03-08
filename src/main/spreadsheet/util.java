@@ -9,6 +9,7 @@
  * @param expTreeToken  an ExpressionTreeToken
  * @return a String associated with expTreeToken
  */
+/*
 String printExpressionTreeToken (Token expTreeToken) {
     String returnString = "";
 
@@ -26,12 +27,14 @@ String printExpressionTreeToken (Token expTreeToken) {
     return returnString;
 }
 
+*/
 /**
  * Return true if the char ch is an operator of a formula.
  * Current operators are: +, -, *, /, (.
  * @param ch  a char
  * @return  whether ch is an operator
- */
+ *//*
+
 boolean isOperator (char ch) {
     return ((ch == Plus) ||
             (ch == Minus) ||
@@ -40,6 +43,7 @@ boolean isOperator (char ch) {
             (ch == LeftParen) );
 }
 
+*/
 /**
  * Given an operator, return its priority.
  *
@@ -50,7 +54,8 @@ boolean isOperator (char ch) {
  *
  * @param ch  a char
  * @return  the priority of the operator
- */
+ *//*
+
 int operatorPriority (char ch) {
     if (!isOperator(ch)) {
         // This case should NEVER happen
@@ -77,6 +82,7 @@ int operatorPriority (char ch) {
     }
 }
 
+*/
 /*
  * Return the priority of this OperatorToken.
  *
@@ -86,7 +92,8 @@ int operatorPriority (char ch) {
  *   (    : 2
  *
  * @return  the priority of operatorToken
- */
+ *//*
+
 int priority () {
     switch (this.operatorToken) {
         case Plus:
@@ -109,6 +116,7 @@ int priority () {
 }
 
 
+*/
 /**
  * getCellToken
  * 
@@ -132,7 +140,8 @@ int priority () {
  * @param startIndex  the index of the first char to process
  * @param cellToken  a cellToken (essentially a return value)
  * @return  index corresponding to the position in the string just after the cell reference
- */
+ *//*
+
 int getCellToken (String inputString, int startIndex, CellToken cellToken) {
     char ch;
     int column = 0;
@@ -219,12 +228,14 @@ int getCellToken (String inputString, int startIndex, CellToken cellToken) {
     return index;
 }
 
+*/
 /**
  *  Given a CellToken, print it out as it appears on the
  *  spreadsheet (e.g., "A3")
  *  @param cellToken  a CellToken
  *  @return  the cellToken's coordinates
- */
+ *//*
+
 String printCellToken (CellToken cellToken) {
     char ch;
     String returnString = "";
@@ -263,6 +274,7 @@ String printCellToken (CellToken cellToken) {
 }
 
 
+*/
 /**
  * getFormula
  * 
@@ -282,7 +294,8 @@ String printCellToken (CellToken cellToken) {
  * level of precedence, grouping is from left to right.
  * 
  * This algorithm follows the algorithm described in Weiss, pages 105-108.
- */
+ *//*
+
 Stack getFormula(String formula) {
     Stack returnStack = new Stack();  // stack of Tokens (representing a postfix expression)
     bool error = false;
@@ -410,3 +423,4 @@ Stack getFormula(String formula) {
 }
 
 
+*/

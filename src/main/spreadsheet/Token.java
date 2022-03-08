@@ -1,4 +1,7 @@
 package main.spreadsheet;
 
-public class Token {
-}
+/**
+ * Empty class parent to
+ * represent all token values
+ */
+public abstract class Token { }
