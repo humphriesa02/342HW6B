@@ -130,7 +130,10 @@ public class Cell {
         if(parentNode.getOperatorToken() == '^')
             return (int) Math.pow(leftVal, rightVal);
 
+
         return leftVal / rightVal;
+
+
 
     }
     /**

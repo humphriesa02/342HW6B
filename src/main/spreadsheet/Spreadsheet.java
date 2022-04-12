@@ -73,9 +73,16 @@ public class Spreadsheet {
      * in the spreadsheetCells array.
      */
     public void printValues(){
+        System.out.print(" ");
+        for(int i = 0; i < spreadsheetCells[0].length; i++){
+            System.out.print("  "+ CellToken.toLetter(i) + " ");
+        }
+        System.out.println();
         for(int i = 0; i < spreadsheetCells.length; i++){
+            System.out.print(i + "| ");
             for (int j = 0; j < spreadsheetCells[i].length; j++){
                 //System.out.print(spreadsheetCells[i][j].getValue() + " ");
+
                 System.out.printf("%-4d", spreadsheetCells[i][j].getValue());
             }
             System.out.println();
@@ -87,12 +94,19 @@ public class Spreadsheet {
      * if they are not blank
      */
     public void printAllFormulas(){
+        System.out.print(" ");
+        for(int i = 0; i < spreadsheetCells[0].length; i++){
+            System.out.print("  "+ CellToken.toLetter(i) + " ");
+        }
+        System.out.println();
         for(int i = 0; i < spreadsheetCells.length; i++){
+            System.out.print(i + "| ");
             for (int j = 0; j < spreadsheetCells[i].length; j++){
-                if(spreadsheetCells[i][j].getFormula() != ""){
-                    System.out.println(spreadsheetCells[i][j].getFormula());
-                }
+                //System.out.print(spreadsheetCells[i][j].getValue() + " ");
+
+                System.out.print(spreadsheetCells[i][j].getFormula() + " ");
             }
+            System.out.println();
         }
     }
 

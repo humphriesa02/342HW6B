@@ -42,15 +42,15 @@ class MainWindow extends JFrame implements ActionListener {
         this.add(mainPanel);
         mainPanel.setBackground(Color.WHITE);
         mainPanel.setLayout(new GridLayout(1, 1));
-        cellPanel.setLayout(new GridLayout(rows * 2, columns * 2));
+        String[] columnNames = new String[columns];
+        for(int i = 0; i < columns; i++){
+            columnNames[i] = toLetter(i);
+        }
+        JTable jTable = new JTable(rows, columnNames);
+        mainPanel.add(jTable);
+        /*cellPanel.setLayout(new GridLayout(rows * 2, columns * 2));
         cellsText = new JTextField[rows][columns];
-        Action changeCell = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            //Action when user presses the Enter key in a JTextField
 
-            }
-        };
         //Creates an array that contains the JTextFields
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -81,8 +81,8 @@ class MainWindow extends JFrame implements ActionListener {
                 });
                 cellPanel.add(cellsText[i][j]);
             }
-        }
-        mainPanel.add(cellPanel);
+        }*/
+        //mainPanel.add(cellPanel);
         setVisible(true);
     }
     public String toLetter(int c) {

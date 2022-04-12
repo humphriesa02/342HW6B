@@ -64,7 +64,7 @@ public class CellToken extends Token {
      * @param c
      * @return
      */
-    public String toLetter(int c) {
+    public static String toLetter(int c) {
         if( c/26 == 0 ) {
             return "" + (char)((int)'A' + (c%26));
         } else {
