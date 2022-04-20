@@ -1,0 +1,1 @@
+Console based spreadsheet application that allows for cell based arithmetic including addition, subtraction, multiplication, division, and more. It also allows for cells to reference other cells and get updated in real time.
